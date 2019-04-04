@@ -1,9 +1,6 @@
 import numpy as np
 import matplotlib
 import networkx as nx
-from gensim.models import Word2Vec
-
-import attention2vec
 from gat.gat import learn_model
 import utils.common_utils as common_utils
 import utils.graph_utils as graph_utils
@@ -14,7 +11,6 @@ import csv
 
 
 def main(args):
-
     # read json file for number of class labels
     with open('../data/num_classes.json') as json_data:
         class_json = json.load(json_data)
@@ -26,18 +22,12 @@ def main(args):
     nx_G, labels = graph_utils.read_graph(dataset, args.weighted, args.directed, num_classes)
     adjacency_matrix = graph_utils.convert_to_adj_matrix(nx_G, args.directed)
 
-    # create an attention2Vec object
-    attn_obj = attention2vec.Attention2Vec(nx_G, args.directed, args.weighted)
-    attn_obj.init_embedding_parameters(args.walk_length, args.num_walks)
-
     print("Number of nodes in the graph : %s" % len(nx_G.nodes()))
     print("Number of edges in the structure graph : %s" % len(nx_G.edges()))
 
     # preprocess the input adjacency matrix
     t = time.time()
     X = adjacency_matrix
-    # X = graph_utils.preprocess_input_graph(adjacency_matrix, args.r, args.t)
-    # print("preprocess_input_graph is taking " + str(time.time() - t) + "s\n")
 
     # read the training data
     train_per = args.train_per # to be changed
@@ -57,7 +47,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    # parse the attention2vec arguments
+    # parse the arguments
     args = common_utils.parse_arguments()
     # # setup the logger
     # common_utils.set_up_logger()

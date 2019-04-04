@@ -82,30 +82,6 @@ def convert_to_adj_matrix(nx_G, is_directed):
     return adj
 
 
-def preprocess_input_graph(A, r, T):
-    '''
-    Preprocess the adjacency matrix according to the formula
-    # Arguments
-        A: Adjacency Matrix of the input graph
-    # Returns
-        Preprocessed matrix according to the formula
-    '''
-    print("Pre-processing input graph to obtain Xs...")
-
-    num_nodes = len(A)
-    P0 = np.eye(num_nodes)
-    state_trnsn_mat = np.divide(A, A.sum(1)).transpose()
-
-    restart_prob = np.multiply(1 - r, P0)
-    P = [P0]
-    for i in range(T):
-        P_temp = np.add(np.multiply(r, np.matmul(P[i], state_trnsn_mat)), restart_prob)
-        P.append(P_temp)
-
-    X = np.average(P[1:], axis = 0)
-    return X
-
-
 def leakyReLU(x, alpha = 0.2):
     '''
     Computes LeakyReLU of a numpy array
