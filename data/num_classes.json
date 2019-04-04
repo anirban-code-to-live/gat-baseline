@@ -1,0 +1,9 @@
+{ "datasets":
+  { "citeseer": 6,
+    "cora": 7,
+    "flickr": 9,
+    "pubmed": 3,
+    "webkb": 5,
+    "got": 2
+  }
+}
