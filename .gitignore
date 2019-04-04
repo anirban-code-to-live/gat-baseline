@@ -102,3 +102,14 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Data folder
+data/
+data
+
+# Virtual environment
+venv/
+venv
+
+# Logs directory
+src/gat/logs
