@@ -112,4 +112,4 @@ venv/
 venv
 
 # Logs directory
-src/gat/logs
+src/logs
